@@ -63,24 +63,6 @@
   .button svg { width: 36px; height: 36px; }
   .button svg path { fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* ---- Meet the team ---- */
-  .team { position: absolute; left: 64px; right: 64px; top: 840px; bottom: 470px; display: grid; gap: 28px; }
-  .member { position: relative; }
-  .member .tile {
-    position: absolute; left: 0; right: 0; bottom: 0; top: 150px; border-radius: 40px;
-    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(245, 193, 58, 0.22) 0%, rgba(245, 193, 58, 0) 100%), rgba(255, 255, 255, 0.07);
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-  }
-  .member .photo { position: absolute; inset: 0; overflow: hidden; border-radius: 0 0 40px 40px; clip-path: inset(-200px 0 0 0 round 0 0 40px 40px); }
-  .member .photo img { position: absolute; left: 50%; top: 0; transform: translateX(-50%); }
-  .member .role {
-    position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); white-space: nowrap;
-    height: 76px; padding: 0 34px; border-radius: 9999px; display: flex; align-items: center; gap: 12px;
-    background: #ffffff; color: var(--ink-light); font-weight: 800; font-size: 28px; letter-spacing: 1px; text-transform: uppercase;
-    box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.6);
-  }
-  .member .role .amp { color: var(--brand-teal); }
-
   /* ---- FAQ tweet cards ---- */
   .threads { position: absolute; left: 64px; right: 64px; display: flex; flex-direction: column; gap: 36px; }
   .thread { display: flex; flex-direction: column; gap: 18px; }
@@ -129,9 +111,41 @@
   .hl-ring svg { width: 300px; height: 300px; }
   .hl-ring svg * { fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
   .hl-ring svg text { fill: var(--accent); stroke: none; font-family: var(--display); font-weight: 900; font-variation-settings: "opsz" 9; }
+
+  /* ---- Meet the team poster: badge hub with orbiting stickers ---- */
+  .orbit { position: absolute; border-radius: 50%; border: 3px dashed rgba(255, 255, 255, 0.28); }
+  .hub {
+    position: absolute; border-radius: 50%; overflow: hidden;
+    box-shadow: 0 0 0 14px #ebf5f7, 0 0 0 40px rgba(235, 245, 247, 0.16), 0 40px 70px -30px rgba(0, 0, 0, 0.7);
+  }
+  .hub img { width: 100%; height: 100%; display: block; }
+  .sticker {
+    position: absolute; z-index: 2; display: grid; place-items: center;
+    background: var(--surface-light); border-radius: 34px; color: var(--brand-teal);
+    box-shadow: 0 0 0 14px rgba(235, 245, 247, 0.22), 0 24px 40px -22px rgba(0, 0, 0, 0.55);
+  }
+  .sticker svg { width: 64%; height: 64%; overflow: visible; }
+  .sticker svg * { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .sticker svg .fill-accent { fill: var(--accent); }
+  .sticker svg .fill-teal { fill: var(--brand-teal); }
+  .sticker svg .fill-surface { fill: var(--surface); }
+  .sticker svg .fill-light { fill: #ffffff; }
+  .spark { position: absolute; width: 44px; height: 44px; }
+  .spark path { fill: var(--accent); }
 </style>
 </head>
 <body>
+
+<template id="icons">
+  <!-- Thin outline icons drawn for this post (64x64 grid). -->
+  <svg data-icon="laptop" viewBox="0 0 64 64"><rect x="11" y="13" width="42" height="29" rx="3"/><path class="fill-accent" d="M15 36c8-10 18 2 34-14v14z" stroke="none"/><path d="M5 47h54l-4 5H9z"/></svg>
+  <svg data-icon="coffee" viewBox="0 0 64 64"><path d="M36 14l5-11"/><path d="M19 15h26l2 6H17z"/><path d="M19 21l3 35h20l3-35"/><path class="fill-accent" d="M21.1 31h21.8l-.9 11H22z"/></svg>
+  <svg data-icon="pen" viewBox="0 0 64 64"><path d="M32 56L18 31l7-19h14l7 19z"/><circle cx="32" cy="31" r="4"/><path d="M32 35v21"/><path d="M25 12h14"/><path class="fill-accent" d="M26 6h12v6H26z"/><path d="M6 24h8M50 24h8"/><circle class="fill-light" cx="4" cy="24" r="2.6"/><circle class="fill-light" cx="60" cy="24" r="2.6"/></svg>
+  <svg data-icon="phone" viewBox="0 0 64 64"><rect x="19" y="5" width="26" height="54" rx="6"/><path d="M28 10h8"/><circle cx="32" cy="52" r="2"/><path class="fill-accent" d="M23 18h18v24H23z" stroke="none"/><path d="M27 34l4 4 7-9"/></svg>
+  <svg data-icon="notebook" viewBox="0 0 64 64"><rect x="15" y="7" width="30" height="50" rx="3"/><path d="M10 15h9M10 25h9M10 35h9M10 45h9"/><path d="M24 19h14M24 27h14M24 35h9"/><path d="M53 9v38l-3 6-3-6V9z"/><path class="fill-accent" d="M47 9h6v6h-6z"/></svg>
+  <svg data-icon="swatches" viewBox="0 0 64 64"><rect class="fill-surface" x="8" y="10" width="17" height="44" rx="4" transform="rotate(-14 16 54)"/><rect class="fill-teal" x="23" y="8" width="17" height="44" rx="4"/><rect class="fill-accent" x="39" y="10" width="17" height="44" rx="4" transform="rotate(14 48 54)"/><circle cx="31.5" cy="44" r="2.5" class="fill-light"/></svg>
+  <svg data-icon="parcel" viewBox="0 0 64 64"><path d="M8 20l24-10 24 10v26L32 56 8 46z"/><path d="M8 20l24 10 24-10"/><path d="M32 30v26"/><path class="fill-accent" d="M18 15.8l24 10V34l-6 2.4V28.3L12 18.3z"/></svg>
+</template>
 
 <template id="arrow"><svg viewBox="0 0 40 40"><path d="M8 20h24M22 10l10 10-10 10"/></svg></template>
 <template id="person-icon"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7"/><path d="M7 35c1.5-7 6.5-10 13-10s11.5 3 13 10"/></svg></template>
@@ -146,10 +160,6 @@
   // Services, prices and lines from the design system's offers page (hustleacademyja.com, read 4 Oct 2026). Prices are USD.
   const BRAND = { name: "Hustle Academy JA", handle: "hustleacademyja.com", logo: "../source/ha-badge.png" };
   const ASKER = { name: "You asked", handle: "@follower" };
-
-  const team = [
-    { photo: "../build/ceo-sticker-team.png", height: 880, role: 'CEO <span class="amp">and</span> Creative Design Manager' },
-  ];
 
   const faq = [
     { title: ["Brand", "services"], qa: [
@@ -225,16 +235,23 @@
     const p = post();
     header(p);
     p.insertAdjacentHTML("beforeend", `<div class="title"><h1 class="hook"><span style="font-size:112px;letter-spacing:2px">Meet the</span><span class="accent" style="font-size:300px;line-height:0.84">Team</span></h1><p class="sub">The people behind Hustle Academy JA.</p></div>`);
-    const grid = document.createElement("div");
-    grid.className = "team";
-    grid.style.gridTemplateColumns = `repeat(${Math.min(team.length, 2)}, 1fr)`;
-    for (const m of team) {
+    // Badge at the centre, the team's tools orbiting it.
+    const cx = 540, cy = 1150, r = 300, hub = 300, size = 150;
+    p.insertAdjacentHTML("beforeend", `<div class="orbit" style="left:${cx - r}px;top:${cy - r}px;width:${2 * r}px;height:${2 * r}px"></div>
+      <div class="hub" style="left:${cx - hub / 2}px;top:${cy - hub / 2}px;width:${hub}px;height:${hub}px"><img src="${BRAND.logo}" alt=""></div>`);
+    const icons = document.getElementById("icons").content;
+    const orbit = [["laptop", -140, -6], ["pen", -40, 5], ["coffee", 0, 6], ["phone", 38, -4], ["swatches", 142, 5], ["notebook", 180, -5]];
+    for (const [name, deg, rot] of orbit) {
+      const a = deg * Math.PI / 180, x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
       const el = document.createElement("div");
-      el.className = "member";
-      el.innerHTML = `<div class="tile"></div><div class="photo"><img src="${m.photo}" alt="" style="height:${team.length > 1 ? m.height * 0.62 : m.height}px"></div><div class="role">${m.role}</div>`;
-      grid.appendChild(el);
+      el.className = "sticker";
+      Object.assign(el.style, { left: x - size / 2 + "px", top: y - size / 2 + "px", width: size + "px", height: size + "px", transform: `rotate(${rot}deg)` });
+      el.appendChild(icons.querySelector(`[data-icon="${name}"]`).cloneNode(true));
+      p.appendChild(el);
     }
-    p.appendChild(grid);
+    const star = '<svg class="spark" viewBox="0 0 44 44" style="left:%Xpx;top:%Ypx;transform:scale(%S)"><path d="M22 0c1.6 11 9.4 18.8 22 22-12.6 3.2-20.4 11-22 22-1.6-11-9.4-18.8-22-22C12.6 18.8 20.4 11 22 0z"/></svg>';
+    for (const [x, y, sc] of [[150, 860, 1], [900, 880, 0.7], [300, 1420, 0.6], [800, 1430, 0.9]])
+      p.insertAdjacentHTML("beforeend", star.replace("%X", x).replace("%Y", y).replace("%S", sc));
     button(p, { kind: "ghost", text: "Tap to meet us" });
   }
 

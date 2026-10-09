@@ -32,7 +32,7 @@ and `design/logo-pink-october.html`. The script fails if an FAQ thread runs into
 
 | File | What |
 | --- | --- |
-| `exports/stories/meet-the-team-1080x1920.png` | Meet the Team intro story (add members in the `team` array) |
+| `exports/stories/meet-the-team-1080x1920.png` | Meet the Team poster: headline, caption and badge with orbiting stickers (no photos) |
 | `exports/stories/faq-00-cover-1080x1920.png` … `faq-05-…png` | FAQ cover + 5 tweet-style Q&A stories |
 | `exports/highlight-covers/highlight-cover-{team,faq}-1080x1920.png` | Highlight covers (icon sits in Instagram's centre crop) |
 | `exports/logo/ha-badge-pink-october-transparent-1080.png` | Breast Cancer Awareness Month logo, transparent |
