@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pink October Logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+<style>
+  /* Brand badge unchanged inside a Breast Cancer Awareness Month ring and ribbon. */
+  :root {
+    --pink: #d6336c;        /* ring band; white text on it is 4.6:1 */
+    --pink-light: #f06595;  /* ribbon front strand */
+    --pink-deep: #a61e4d;   /* ribbon back strand */
+    --surface-deep: #052a33;
+  }
+  * { margin: 0; padding: 0; }
+  html, body { background: transparent; }
+  body.profile { background: var(--surface-deep); }
+  svg { display: block; }
+  .ring-text { font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: 50px; letter-spacing: 9px; fill: #ffffff; }
+</style>
+</head>
+<body>
+<svg id="logo" width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="arc-top" d="M 48 540 A 492 492 0 0 1 1032 540"/>
+    <path id="arc-bottom" d="M 48 540 A 492 492 0 0 0 1032 540"/>
+  </defs>
+
+  <circle cx="540" cy="540" r="492" fill="none" stroke="var(--pink)" stroke-width="96"/>
+  <circle cx="540" cy="540" r="444" fill="#ffffff"/>
+  <image href="../source/ha-badge.png" x="102" y="102" width="876" height="876"/>
+
+  <text class="ring-text" dominant-baseline="central"><textPath href="#arc-top" startOffset="50%" text-anchor="middle">BREAST CANCER AWARENESS MONTH</textPath></text>
+  <text class="ring-text" dominant-baseline="central"><textPath href="#arc-bottom" startOffset="45%" text-anchor="end">PINK</textPath></text>
+  <text class="ring-text" dominant-baseline="central"><textPath href="#arc-bottom" startOffset="55%" text-anchor="start">OCTOBER</textPath></text>
+
+  <!-- Awareness ribbon on the ring at bottom centre, between PINK and OCTOBER; clear of the badge wordmark. -->
+  <g transform="translate(540 962) scale(0.74) translate(-65 -100)">
+    <g fill="none" stroke-linejoin="round" stroke-width="44" stroke="#ffffff">
+      <path d="M36 66 C 28 40, 40 12, 65 12 C 90 12, 102 40, 94 66 L 26 188"/>
+      <path d="M36 66 L 104 188"/>
+    </g>
+    <g fill="none" stroke-linejoin="round" stroke-width="30">
+      <path d="M36 66 L 104 188" stroke="var(--pink-deep)"/>
+      <path d="M36 66 C 28 40, 40 12, 65 12 C 90 12, 102 40, 94 66 L 26 188" stroke="var(--pink-light)"/>
+    </g>
+  </g>
+</svg>
+<script>
+  if (new URLSearchParams(location.search).get("bg") === "profile") document.body.className = "profile";
+</script>
+</body>
+</html>
